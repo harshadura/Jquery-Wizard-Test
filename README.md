@@ -1,5 +1,6 @@
 # FormWizard
 
+
 FormWizard is a jQuery plugin which turns a regular HTML form into a wizard with very little effort.
 
 The plugin supports AJAX form submission, form validation and browser back and forward buttons, all through integration with the following jQuery plugins:
