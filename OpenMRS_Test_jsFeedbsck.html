@@ -1,0 +1,545 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0045)http://localhost:8088/openmrs/findPatient.htm -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script src="./OpenMRS - Find Patient_files/openmrs.js" type="text/javascript"></script>
+    <script src="./OpenMRS - Find Patient_files/openmrsmessages.js" type="text/javascript"></script>
+    <link href="./OpenMRS - Find Patient_files/openmrs.css" type="text/css" rel="stylesheet">
+    <link href="./OpenMRS - Find Patient_files/openmrs_green.css" type="text/css" rel="stylesheet">
+    <link href="./OpenMRS - Find Patient_files/style.css" type="text/css" rel="stylesheet">
+    <script src="./OpenMRS - Find Patient_files/engine.js" type="text/javascript"></script>
+    <script src="./OpenMRS - Find Patient_files/DWRAlertService.js" type="text/javascript"></script>
+
+    <!--<script src="./OpenMRS - Find Patient_files/jquery.min.js" type="text/javascript"></script>-->
+    <!--<script src="./OpenMRS - Find Patient_files/jquery-ui.custom.min.js" type="text/javascript"></script>-->
+    <!--<script src="./OpenMRS - Find Patient_files/jquery-ui-datepicker-i18n.js" type="text/javascript"></script>-->
+    <!--<link href="./OpenMRS - Find Patient_files/jquery-ui.custom.css" type="text/css" rel="stylesheet">-->
+
+    <link rel="stylesheet" href="./OpenMRS - Find Patient_files/static/css/feedback.css" type="text/css" media="screen" title="no title" charset="utf-8"/>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+    <script type="text/javascript" src="./OpenMRS - Find Patient_files/static/js/jsfeedback.js"></script>
+    <script type="text/javascript" src="./OpenMRS - Find Patient_files/static/js/html2canvas.js"></script>
+    <script type="text/javascript">
+        var $j = jQuery.noConflict();
+        $j(document).ready(function(){
+            $j('#jsfeedback123').click(function() {
+                $j('body').feedback();
+            })
+        });
+    </script>
+
+    <link rel="icon" type="image/ico" href="http://localhost:8088/openmrs/images/openmrs-favicon.ico">
+    <title>OpenMRS - Find Patient</title>
+
+    <script type="text/javascript">
+        var $j = jQuery.noConflict();
+        /* variable used in js to know the context path */
+        var openmrsContextPath = '/openmrs';
+        var dwrLoadingMessage = 'Loading...';
+        var jsDateFormat = 'dd/mm/yyyy';
+        var jsLocale = 'en_GB';
+        /* prevents users getting false dwr errors msgs when leaving pages */
+        var pageIsExiting = false;
+        if (jQuery)
+            jQuery(window).bind('beforeunload', function () { pageIsExiting = true; } );
+        var handler = function(msg, ex) {
+            if (!pageIsExiting) {
+                var div = document.getElementById("openmrs_dwr_error");
+                div.style.display = ""; // show the error div
+                var msgDiv = document.getElementById("openmrs_dwr_error_msg");
+                msgDiv.innerHTML = 'A javascript error has occurred:' + " <b>" + msg + "</b>";
+            }
+        };
+        dwr.engine.setErrorHandler(handler);
+        dwr.engine.setWarningHandler(handler);
+    </script>
+
+    <!--<script src="./OpenMRS - Find Patient_files/fdbk.js" type="text/javascript"></script>-->
+    <!--<script src="./OpenMRS - Find Patient_files/bbq.js" type="text/javascript"></script>-->
+    <!--<script src="./OpenMRS - Find Patient_files/jquery.form.js" type="text/javascript"></script>-->
+    <!--<script src="./OpenMRS - Find Patient_files/jquery.form.wizard-min.js" type="text/javascript"></script>-->
+</head>
+
+<body>
+    <div id="pageBody">
+    <div id="userBar">
+					<span id="userLoggedInAs" class="firstChild">
+						Currently logged in as Super User
+					</span>
+					<span id="userLogout">
+						<a href="http://localhost:8088/openmrs/logout">Log out</a>
+					</span>
+					<span>
+						<a href="http://localhost:8088/openmrs/options.form">My Profile</a>
+					</span>
+
+			<span id="userHelp">
+				<a href="http://localhost:8088/openmrs/help.htm">Help</a>
+			</span>
+					<span>
+						<a href="javascript:popUp()">Submit Feedback</a>
+					</span>
+    <div class="portlet" id="feedback.submitFeedbackController">
+        <!--<link href="./OpenMRS - Find Patient_files/jquery-ui.custom.css" type="text/css" rel="stylesheet">-->
+        <!--<script type="text/javascript">-->
+            <!--var $j = jQuery.noConflict();-->
+            <!--$j(document).ready(function(){-->
+                <!--$j("#feedbackForm").formwizard({-->
+                    <!--formPluginEnabled: true,-->
+                    <!--validationEnabled: true,-->
+                    <!--focusFirstInput : true-->
+                <!--}-->
+
+                        <!--);-->
+            <!--});-->
+        <!--</script>-->
+    </div>
+</div>
+<div id="banner">
+    <a href="http://openmrs.org/">
+        <div id="logosmall"><img src="./OpenMRS - Find Patient_files/openmrs_logo_text_small.gif" alt="OpenMRS Logo" border="0"></div>
+    </a>
+    <table id="bannerbar">
+        <tbody><tr>
+            <td id="logocell"> <img src="./OpenMRS - Find Patient_files/openmrs_logo_white.gif" alt="" class="logo-reduced61">
+            </td>
+            <td id="barcell">
+                <div class="barsmall">
+                    <img align="left" src="./OpenMRS - Find Patient_files/openmrs_green_bar.gif" alt="" class="bar-round-reduced50">
+                    <ul class="navList">	<li id="homeNavLink" class="firstChild">
+                        <a href="http://localhost:8088/openmrs/">Home</a>
+                    </li>
+                        <li id="findPatientNavLink">
+                            <a href="./OpenMRS - Find Patient_files/OpenMRS - Find Patient.html">
+                                Find/Create Patient
+                            </a>
+                        </li>
+                        <li id="dictionaryNavLink">
+                            <a href="http://localhost:8088/openmrs/dictionary">Dictionary</a>
+                        </li>
+                        <li>
+                            <a href="http://localhost:8088/openmrs//cohortBuilder.list">Cohort Builder</a>
+                        </li>
+                        <li>
+                            <a href="http://localhost:8088/openmrs/module/reporting/dashboard/index.form">Reporting</a>
+                        </li>
+                        <li id="administrationNavLink">
+                            <a href="http://localhost:8088/openmrs/admin">Administration</a>
+                        </li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+        </tbody></table>
+</div>
+
+<div id="content">
+<div id="openmrs_dwr_error" style="display:none" class="error">
+    <div id="openmrs_dwr_error_msg"></div>
+    <div id="openmrs_dwr_error_close" class="smallMessage">
+        <i>The full stacktrace for this error can usually be found in your server's error logs.</i>
+        <a href="http://localhost:8088/openmrs/findPatient.htm#" onclick="this.parentNode.parentNode.style.display=&#39;none&#39;">Hide error</a>
+    </div>
+</div>
+
+<h2>Patient Search</h2>
+<br>
+<div class="portlet" id="findPatient">
+<style>
+    #openmrsSearchTable_wrapper{
+    /* Removes the empty space between the widget and the Create New Patient section if the table is short */
+    /* Over ride the value set by datatables */
+        min-height: 0px; height: auto !important;
+    }
+</style>
+<!--<script src="./OpenMRS - Find Patient_files/DWRPatientService.js" type="text/javascript"></script>-->
+<!--<link href="./OpenMRS - Find Patient_files/dataTables_jui.css" type="text/css" rel="stylesheet">-->
+<!--<script src="./OpenMRS - Find Patient_files/jquery.dataTables.min.js" type="text/javascript"></script>-->
+<!--<script src="./OpenMRS - Find Patient_files/openmrsSearch.js" type="text/javascript"></script>-->
+
+<!--<script type="text/javascript">-->
+    <!--var lastSearch;-->
+    <!--$j(document).ready(function() {-->
+        <!--new OpenmrsSearch("findPatients", false, doPatientSearch, doSelectionHandler,-->
+                <!--[	{fieldName:"identifier", header:omsgs.identifier},-->
+                    <!--{fieldName:"givenName", header:omsgs.givenName},-->
+                    <!--{fieldName:"middleName", header:omsgs.middleName},-->
+                    <!--{fieldName:"familyName", header:omsgs.familyName},-->
+                    <!--{fieldName:"age", header:omsgs.age},-->
+                    <!--{fieldName:"gender", header:omsgs.gender},-->
+                    <!--{fieldName:"birthdateString", header:omsgs.birthdate},-->
+                <!--],-->
+        <!--{-->
+            <!--searchLabel: 'Patient Identifier or Patient Name:'-->
+
+        <!--});-->
+
+        <!--//set the focus to the first input box on the page(in this case the text box for the search widget)-->
+        <!--var inputs = document.getElementsByTagName("input");-->
+        <!--if(inputs[0])-->
+            <!--inputs[0].focus();-->
+
+
+    <!--});-->
+    <!--function doSelectionHandler(index, data) {-->
+        <!--document.location = "patientDashboard.form?patientId=" + data.patientId + "&phrase=" + lastSearch;-->
+    <!--}-->
+
+    <!--//searchHandler for the Search widget-->
+    <!--function doPatientSearch(text, resultHandler, getMatchCount, opts) {-->
+        <!--lastSearch = text;-->
+        <!--DWRPatientService.findCountAndPatients(text, opts.start, opts.length, getMatchCount, resultHandler);-->
+    <!--}-->
+
+<!--</script>-->
+
+<div>
+    <b class="boxHeader">Find Patient(s)</b>
+    <div class="box">
+        <div class="searchWidgetContainer" id="findPatients"><span><span style="white-space: nowrap"><span><span id="searchLabelNode">Patient Identifier or Patient Name:</span><input type="text" value="" id="inputNode" autocomplete="off"><input type="checkbox" style="display: none" id="includeRetired"><img id="spinner" src="./OpenMRS - Find Patient_files/loading.gif" style="visibility: hidden; "><input type="checkbox" style="display: none" id="includeVoided"><input type="checkbox" style="display: none" id="verboseListing"><span id="loadingMsg"></span><span id="minCharError" class="error">Enter at least 3 characters</span><span id="pageInfo"></span><br><span id="searchWidgetNotification"></span></span></span><span class="openmrsSearchDiv" style="display: none; "><div class="dataTables_wrapper" id="openmrsSearchTable_wrapper"><table id="openmrsSearchTable" cellpadding="2" cellspacing="0" style="width: 100%"><thead id="searchTableHeader"><tr><th><span></span>Identifier</th><th><span></span>Given</th><th><span></span>Middle</th><th><span></span>Family Name</th><th><span></span>Age</th><th><span></span>Gender</th><th><span></span>Birthdate</th></tr></thead><tbody><tr class="odd"><td valign="top" colspan="7" class="dataTables_empty">No matching records found</td></tr></tbody></table><div class="fg-button ui-helper-clearfix"><div class="dataTables_info" id="openmrsSearchTable_info"> </div><div class="dataTables_paginate fg-buttonset fg-buttonset-multi paging_full_numbers" id="openmrsSearchTable_paginate"><span class="first ui-corner-tl ui-corner-bl fg-button ui-state-default ui-state-disabled" id="openmrsSearchTable_first">First</span><span class="previous fg-button ui-state-default ui-state-disabled" id="openmrsSearchTable_previous">Previous</span><span></span><span class="next fg-button ui-state-default ui-state-disabled" id="openmrsSearchTable_next">Next</span><span class="last ui-corner-tr ui-corner-br fg-button ui-state-default ui-state-disabled" id="openmrsSearchTable_last">Last</span></div></div></div></span></span></div>
+    </div>
+</div>
+
+<br> &nbsp; or<br><br>
+<div class="portlet" id="addPersonForm">
+    <script src="./OpenMRS - Find Patient_files/calendar.js" type="text/javascript"></script>
+    <div id="createPatient">
+        <b class="boxHeader">
+            Create Patient
+        </b>
+        <div class="box">
+            To create a new person, enter the person's name and other information below first to double-check that they don't already have a record in the system. <br>
+            <form method="get" action="http://localhost:8088/openmrs/admin/person/addPerson.htm" onsubmit="return validateForm()">
+                <table>
+                    <tbody><tr>
+                        <td>Name</td>
+                        <td>
+                            <input type="text" name="addName" id="personName" size="40" onkeyup="clearError(&#39;name&#39;)">
+                            <span class="error" id="nameError" style="display: none; ">Please select a name</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Birthdate<br><i style="font-weight: normal; font-size: 0.8em;">(Format: dd/mm/yyyy)</i></td>
+                        <td valign="top">
+                            <input type="text" name="addBirthdate" id="birthdate" size="11" value="" onclick="showCalendar(this,60)" onchange="clearError(&#39;birthdate&#39;)">
+                            or Age
+                            <input type="text" name="addAge" id="age" size="5" value="" onkeyup="clearError(&#39;birthdate&#39;)">
+                            <span class="error" id="birthdateError" style="display: none; ">Please select a valid birthdate or age</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Gender</td>
+                        <td>
+
+                            <input type="radio" name="addGender" id="gender-M" value="M" onclick="clearError(&#39;gender&#39;)"><label for="gender-M"> Male </label>
+
+                            <input type="radio" name="addGender" id="gender-F" value="F" onclick="clearError(&#39;gender&#39;)"><label for="gender-F"> Female </label>
+
+                            <span class="error" id="genderError" style="display: none; ">Please select a gender</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <input type="submit" value="Create Person">
+                        </td>
+                    </tr>
+                    </tbody></table>
+                <input type="hidden" name="personType" value="patient">
+                <input type="hidden" name="viewType" value="shortEdit">
+            </form>
+        </div>
+
+        <script type="text/javascript"><!--
+			clearError("name");
+			clearError("birthdate");
+			clearError("gender");
+			
+			function validateForm() {
+				var name = document.getElementById("personName");
+				var birthdate = document.getElementById("birthdate");
+				var birthyear = (birthdate == null || birthdate.value == "") ? "" : birthdate.value.substr(6, 4);
+				var age = document.getElementById("age");
+				var male = document.getElementById("gender-M");
+				var female = document.getElementById("gender-F");
+				var year = new Date().getFullYear();
+				
+				var result = true;
+				if (name.value == "") {
+					document.getElementById("nameError").style.display = "";
+					result = false;
+				}
+				
+				if (birthdate.value == "" && age.value == "") {
+					document.getElementById("birthdateError").style.display = "";
+					result = false;
+				}
+				else {
+					if (birthdate.value != "") {
+						if (birthyear.length < 4 || birthyear < (year-120) || isFutureDate(birthdate.value)) {
+							document.getElementById("birthdateError").style.display = "";
+							result = false;
+						}
+					}
+					else if (age.value != "") {
+						if (isInteger(age.value) == false) {
+							document.getElementById("birthdateError").style.display = "";
+							result = false;
+						} else if (age.value < 0 || age.value > 120) {
+							document.getElementById("birthdateError").style.display = "";
+							result = false;
+						}
+					}
+				}
+		
+				if (male.checked == false && female.checked == false) {
+					document.getElementById("genderError").style.display = "";
+					result = false;
+				} 
+				
+				return result;
+			}
+			
+			function isFutureDate(birthdate) {
+				if (birthdate == "")
+					return false;
+				
+				var currentTime = new Date().getTime();
+				
+				var datePattern = 'dd/mm/yyyy';
+				var datePatternStart = datePattern.substr(0,1).toLowerCase();
+				
+				var enteredTime = new Date();
+				var year, month, day;
+				if (datePatternStart == 'm') { /* M-D-Y */
+					year = birthdate.substr(6, 4);
+					month = birthdate.substr(0, 2);
+					day = birthdate.substr(3, 2);
+				}
+				else if (datePatternStart == 'y') { /* Y-M-D */
+					year = birthdate.substr(0, 4);
+					month = birthdate.substr(5, 2);
+					day = birthdate.substr(8, 2);
+				}
+				else { /* (datePatternStart == 'd') D-M-Y */
+					year = birthdate.substr(6, 4);
+					month = birthdate.substr(3, 2);
+					day = birthdate.substr(0, 2);
+				}
+				
+				/* alert("year: " + year + " month: " + month + " day " + day); */
+				
+				enteredTime.setYear(year);
+				enteredTime.setMonth(month - 1);
+				enteredTime.setDate(day);
+				
+				return enteredTime.getTime() > currentTime;
+				
+			}
+			
+			function clearError(errorName) {
+				document.getElementById(errorName + "Error").style.display = "none";
+			}
+
+			function isInteger(val)
+			{
+			    if(val==null) {
+			        return false;
+			    }
+			    if (val.length==0) {
+			        return false;
+			    }
+			    for (var i = 0; i < val.length; i++) {
+			        var ch = val.charAt(i);
+			        if (ch < "0" || ch > "9") return false;
+			    }
+			    return true;
+			}
+		--></script>
+    </div>
+</div>
+<p>
+</p><p>
+</p></div>
+<br>
+</div>
+</div>
+<div id="footer">
+    <div id="footerInner">
+			<span id="localeOptions">
+					English (United Kingdom)
+					|
+					<a href="http://localhost:8088/openmrs/findPatient.htm?&lang=pt">português</a>
+					|
+					<a href="http://localhost:8088/openmrs/findPatient.htm?&lang=en_US">English (United States)</a>
+					|
+					<a href="http://localhost:8088/openmrs/findPatient.htm?&lang=it">italiano</a>
+					|
+					<a href="http://localhost:8088/openmrs/findPatient.htm?&lang=fr">français</a>
+					|
+					<a href="http://localhost:8088/openmrs/findPatient.htm?&lang=es">español</a>
+			</span>
+        <span id="buildDate">Last Build: May 31 2012 04:22 PM</span>
+        <span id="codeVersion">Version: 1.8.3  Build 24510</span>
+        <span id="poweredBy"><a href="http://openmrs.org/">Powered by OpenMRS <img border="0" align="top" src="./OpenMRS - Find Patient_files/openmrs_logo_tiny.png"></a></span>
+    </div>
+</div>
+
+<div style="display: none; z-index: 1000; outline: 0px; position: absolute; " class="ui-dialog ui-widget ui-widget-content ui-corner-all  ui-draggable ui-resizable" tabindex="-1" role="dialog" aria-labelledby="ui-dialog-title-dialog"><div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix" unselectable="on"><span class="ui-dialog-title" id="ui-dialog-title-dialog" unselectable="on">Submit Feedback</span><a href="http://localhost:8088/openmrs/findPatient.htm#" class="ui-dialog-titlebar-close ui-corner-all" role="button" unselectable="on"><span class="ui-icon ui-icon-closethick" unselectable="on">close</span></a></div><div id="dialog" style="" class="ui-dialog-content ui-widget-content">
+    <form id="feedbackForm" method="post" action="http://localhost:8088/openmrs/module/feedback/addFeedback.form" class="bbq ui-formwizard ui-helper-reset ui-widget ui-widget-content ui-helper-reset ui-corner-all" enctype="multipart/form-data">
+        <div id="fieldWrapper">
+                <span id="step1" class="step ui-formwizard-content ui-helper-reset ui-corner-all" style="display: inline; ">
+                    <b>Step 1 of 6</b>
+	                <br><br>
+                    <table>
+                        <tbody><tr>
+                            <td>Subject </td>
+                            <td>
+                                <select name="subject" class="ui-wizard-content ui-helper-reset ui-state-default">
+                                    <option value="Add Concept"> Add Concept </option>
+                                    <option value="Patient Not Found"> Patient Not Found </option>
+                                    <option value="Error"> Error </option>
+                                    <option value="Record Not Found"> Record Not Found </option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Severity Level  </td>
+                            <td>
+                                <select name="severity" class="ui-wizard-content ui-helper-reset ui-state-default">
+                                    <option value="Urgent"> Urgent </option>
+                                    <option value="High"> High </option>
+                                    <option value="Medium"> Medium </option>
+                                    <option value="Low"> Low </option>
+                                    <option value="Low"> Low </option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Receiver  </td>
+                            <td>
+                                <select id="fdbk_receiver" class="ui-wizard-content ui-helper-reset ui-state-default">
+                                    <option value="admin">Admin</option>
+                                    <option value="user1">User1</option>
+                                </select>
+                            </td>
+                        </tr>
+                        </tbody></table>
+	            </span>
+	            <span id="step2" class="step ui-formwizard-content ui-helper-reset ui-corner-all" style="display: none; ">
+                    <b>Step 2 of 6</b>
+	                <br><br>
+                    <table>
+                        <tbody><tr>
+                            <td>Feedback Message Content</td>
+                        </tr>
+                        <tr>
+                            <td><textarea name="feedback" rows="4" cols="40" disabled="" class="ui-wizard-content ui-helper-reset ui-state-default"></textarea></td>
+                        </tr>
+                        </tbody></table>
+		        </span>
+		        <span id="step3" class="step ui-formwizard-content ui-helper-reset ui-corner-all" style="display: none; ">
+                    <b>Step 3 of 6</b>
+	                <br><br>
+                    <table>
+                        <tbody><tr>
+                            <td>Stack Trace</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="pagecontext" value="Yes" disabled="" class="ui-wizard-content ui-helper-reset ui-state-default"><br>
+                                <textarea name="stack" rows="4" cols="40" disabled="" class="ui-wizard-content ui-helper-reset ui-state-default"></textarea>
+                            </td>
+                        </tr>
+                        </tbody></table>
+				</span>
+				<span id="step4" class="step ui-formwizard-content ui-helper-reset ui-corner-all" style="display: none; ">
+                    <b>Step 4 of 6</b>
+	                <br><br>
+                    Edit the Screenshot<br><br>
+                    <table>
+                        <tbody><tr>
+                            <td><input type="button" id="fdbk_highlight" value="Highlight" disabled="" class="ui-wizard-content ui-helper-reset ui-state-default"></td>
+                            <td>Highlight important data (if-any)</td>
+                        </tr>
+                        <tr>
+                            <td><input class="navigation_button ui-wizard-content ui-helper-reset ui-state-default" type="button" id="fdbk_blackout" value="Blackout" disabled=""></td>
+                            <td>Blackout sensitive data (if-any)</td>
+                        </tr>
+                        </tbody></table>
+				</span>
+   				<span id="step5" class="step ui-formwizard-content ui-helper-reset ui-corner-all" style="display: none; ">
+                    <b>Step 5 of 6</b>
+	                <br><br>
+                    <center>
+                        <canvas id="fdbk_processed_screenshot" width="400" height="200" style="border:3px solid #c3c3c3;"></canvas><br>
+                        Processed Screenshot<br>
+                        <hr>
+                    </center>
+                       Upload Attachment<br><br>
+                       <input type="file" name="file" size="40" disabled="" class="ui-wizard-content ui-helper-reset ui-state-default"> &lt; Attachments (if-any)<br>
+				</span>
+                <span id="confirmation" class="step ui-formwizard-content ui-helper-reset ui-corner-all" style="display: none; ">
+                    <b>Step 6 of 6</b>
+	                <br><br>
+                    <center>
+                        <b>Feedback Confirmation</b>
+                        <br><br>
+                        <canvas id="fdbk_screenshot" width="400" height="200" style="border:3px solid #c3c3c3;"></canvas><br>
+                        Screenshot Preview<br>
+                    </center>
+                    <hr>
+                    <u>Feedback Message Content</u><br>
+                    <label>Error occurred while adding a new patient</label>
+                    <hr>
+                    <u>Stack Trace</u><br>
+                    <label>"Thread-5" (TID:0xee703b78, sys_thread_t:0xee261db8, state:R) prio=5
+                        mythread.stopper(exec3.java:10)
+                        mythread.run(exec3.java:16)</label>
+                    <hr>
+                     <table>
+                         <tbody><tr>
+                             <td>Subject</td>
+                             <td>Record Not Found</td>
+                         </tr>
+                         <tr>
+                             <td>Severity Level</td>
+                             <td>Urgent</td>
+                         </tr>
+                         <tr>
+                             <td>Receiver</td>
+                             <td>Admin</td>
+                         </tr>
+                         </tbody></table>
+                    <hr><label>Page Infohttp://localhost:8080/openmrs/patient.html</label>
+                    <hr>
+                       <u>Other related attachments</u><br>
+                       <label>Attachment1.zip, Attachment2.png</label>
+                    <hr>
+				</span>
+        </div>
+        <br>
+        <div id="bottomNavigation">
+            <input id="back" value="Back" type="reset" class="ui-wizard-content ui-formwizard-button ui-helper-reset ui-state-default ui-state-disabled" disabled="">
+            <input id="next" value="Next" type="submit" class="ui-wizard-content ui-formwizard-button ui-helper-reset ui-state-default ui-state-active">
+        </div>
+        <br>
+    </form>
+
+    <br>
+    <b class="boxHeader">Help</b>
+    <ul>
+        <li><i>Submit the feedback under a specific subject that you can select from the drop-down,incase you are not sure about what subject to choose then the one that is already selected is default according to your System Administrator.</i></li>
+        <li><i>Submit the feedback under a specific severity that you can select from the drop-down,incase you are not sure about what is the severity level of the problem then the one that is already selected is default according to your System Administrator.</i></li>
+        <li><i>Include any message in the feedback, so that the feedback become more clear to the administrator.If you want system to include other information then select the option for include other details.</i></li>
+        <li><i>Set the preference for receiving notifications from the User Preferences page under the feedback module.</i></li>
+    </ul>
+
+</div><div class="ui-resizable-handle ui-resizable-n" style="" unselectable="on"></div><div class="ui-resizable-handle ui-resizable-e" style="" unselectable="on"></div><div class="ui-resizable-handle ui-resizable-s" style="" unselectable="on"></div><div class="ui-resizable-handle ui-resizable-w" style="" unselectable="on"></div><div class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se ui-icon-grip-diagonal-se" style="z-index: 1001; " unselectable="on"></div><div class="ui-resizable-handle ui-resizable-sw" style="z-index: 1002; " unselectable="on"></div><div class="ui-resizable-handle ui-resizable-ne" style="z-index: 1003; " unselectable="on"></div>
+    <div class="ui-resizable-handle ui-resizable-nw" style="z-index: 1004; " unselectable="on"></div>
+</div>
+
+		 <div id="jsfeedback123">Send feedback</div>
+
+</body>
+
+</html>
