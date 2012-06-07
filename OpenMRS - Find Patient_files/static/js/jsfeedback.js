@@ -73,7 +73,7 @@
                     
                         canvasDom.write("<h1>Send Feedback</h1>"+"<img src='"+a+"' style='border:1px solid black; width:1000px;' />");
                         canvasDom.write('<br /><br />Message:<br /><textarea style="width:400px;height:200px;">'+textMessage.val()+'</textarea>');
-                        canvasDom.write('<br /><button>Submit (disabled in the example)</button>');
+                        canvasDom.write('<br /><button>Submit</button>');
                         
                         $('#feedback').show();
                     }
